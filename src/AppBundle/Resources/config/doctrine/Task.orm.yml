@@ -1,0 +1,22 @@
+AppBundle\Entity\Task:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\TaskRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        parentId:
+            type: integer
+            column: parent_id
+        content:
+            type: text
+        status:
+            type: string
+            length: '128'
+        publishedAt:
+            type: datetime
+    lifecycleCallbacks: {  }

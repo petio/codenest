@@ -1,0 +1,25 @@
+AppBundle\Entity\TasksList:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\TasksListRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: '255'
+            unique: true
+        slug:
+            type: string
+            length: '255'
+            unique: true
+        authorEmail:
+            type: string
+            length: '255'
+        publishedAt:
+            type: datetime
+    lifecycleCallbacks: {  }
