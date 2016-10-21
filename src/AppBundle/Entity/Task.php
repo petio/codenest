@@ -16,6 +16,8 @@ class Task
 
     /**
      * @var int
+     * @ORM\ManyToOne(targetEntity="TasksList", inversedBy="id")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      */
     private $parentId;
 

@@ -19,14 +19,14 @@
             <tr>
                 <td>{{ post.title }}</td>
                 <td>{{ post.authorEmail }}</td>
-                <td>{% if post.publishedAt %}{{ post.publishedAt }}{% endif %}</td>
+               <td>{% if post.publishedAt %}{{ post.publishedAt|date('Y-m-d') }}{% endif %}</td>
                 <td>
                     <div class="item-actions">
                         <a href="{{ path('admin_post_show', { id: post.id }) }}" class="btn btn-sm btn-default">
                             {{ 'action.show'|trans }}
                         </a>
 
-                        {% if post.isAuthor(app.user) %}
+                        {% if is_granted('ROLE_ADMIN') %}
                             <a href="{{ path('admin_post_edit', { id: post.id }) }}" class="btn btn-sm btn-primary">
                                 <i class="fa fa-edit"></i> {{ 'action.edit'|trans }}
                             </a>

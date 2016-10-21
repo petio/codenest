@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use AppBundle\Entity\Tasks;
+use AppBundle\Entity\TasksList;
 
 /**
  * Controller used to manage tasks contents in the backend.
@@ -51,10 +51,10 @@ class TaskController extends Controller
      */
     public function indexAction()
     {
-     //   $entityManager = $this->getDoctrine()->getManager();
-     //   $posts = $entityManager->getRepository('AppBundle:Post')->findAll();
+        $entityManager = $this->getDoctrine()->getManager();
+        $posts = $entityManager->getRepository('AppBundle:TasksList')->findAll();
 
-$posts ='';
+
         return $this->render('admin/tasks/index.html.twig', array('posts' => $posts));
     }
 
@@ -70,7 +70,7 @@ $posts ='';
      */
     public function newAction(Request $request)
     {
-        $post = new Tasks();
+        $post = new TasksList();
         $post->setAuthorEmail($this->getUser()->getEmail());
 
         // See http://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
@@ -84,7 +84,7 @@ $posts ='';
         // However, we explicitly add it to improve code readability.
         // See http://symfony.com/doc/current/best_practices/forms.html#handling-form-submits
         if ($form->isSubmitted() && $form->isValid()) {
-            $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
+           // $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);

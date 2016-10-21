@@ -39,7 +39,7 @@
                                     </li>
 									 {% if app.user==false %}
 									<li>
-                                        <a href="/login">
+                                        <a href="{{ path('fos_user_security_login') }}">
                                             <i class="fa fa-home"></i> {{ 'menu.login'|trans }}
                                         </a>
                                     </li>
@@ -61,7 +61,7 @@
 
                                 {% if app.user %}
                                     <li>
-                                        <a href="{{ path('security_logout') }}">
+                                        <a href="{{ path('fos_user_security_logout') }}">
                                             <i class="fa fa-sign-out"></i> {{ 'menu.logout'|trans }}
                                         </a>
                                     </li>
@@ -81,7 +81,26 @@
         {% endblock %}
 		
 		 <div class="container body-container">
-        {% block body %}{% endblock %}
+        {% block body %}
+			<div class="row">
+                    <div id="main" class="col-sm-9">
+                        {{ include('default/_flash_messages.html.twig') }}
+
+                        {% block main %}{% endblock %}
+                    </div>
+					
+					 <div id="sidebar" class="col-sm-3">
+                        {% block sidebar %}
+                            {{ render_esi(controller('FrameworkBundle:Template:template', {
+                                'template': 'tasks/about.html.twig',
+                                'sharedAge': 600,
+                                '_locale': app.request.locale
+                            })) }}
+                        {% endblock %}
+                    </div>
+            </div>
+
+		{% endblock %}
 		</div>
 		
 		{% block footer %}

@@ -17,7 +17,9 @@ class TasksList
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @ORM\OneToMany(targetEntity="Task", mappedBy="parentId")
      */
+
     private $id;
 
     /**
